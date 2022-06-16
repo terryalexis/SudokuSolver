@@ -1,7 +1,19 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import java.io.File
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main(args: Array<String>) {
+    println("=====================")
+    println("=== SUDOKU SOLVER ===")
+    println("=====================\n")
+    print("Enter filename of sudoku puzzle to solve: ")
+    val inputFile = "src/sample_puzzles/Input/" + readLine()!!
+    print("Enter filename for the sudoku solution: ")
+    val outputFile = readLine()!!
+
+    val lines: List<String> = File(inputFile).readLines()
+    val puzzleToSolve = PuzzleCreator().createPuzzleFromData(lines)
+
+    println("Solving the puzzle...")
+    // perform calculation
+    // print error if any, else
+    println("Finished! Check $outputFile for the result.")
 }
