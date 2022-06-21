@@ -10,6 +10,9 @@ class PuzzleCreator {
 
         for(i in 2..symbolsPerSet) {
             val rowValues = puzzleData[i].split(" ").toTypedArray()
+            if(rowValues.size < symbolsPerSet) {
+                throw Exception("Sudoku puzzle is incorrectly formatted")
+            }
         }
         return puzzle
     }
