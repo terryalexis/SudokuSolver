@@ -15,6 +15,7 @@ fun main(args: Array<String>) {
     // perform calculation
     // print error if any, else
     println("Finished! Check $outputFile for the result.")
+    println(puzzleToSolve.toString())
 }
 
 fun getInputFile(): String {

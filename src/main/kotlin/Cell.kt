@@ -7,4 +7,8 @@ class Cell(
             possibleValues = mutableListOf<String>()
         }
     }
+
+    override fun toString(): String {
+        return value
+    }
 }

@@ -14,4 +14,18 @@ class Puzzle(
         }
         puzzle.add(cells)
     }
+
+    override fun toString(): String {
+        var puzzleString: String = ""
+        for(row: List<Cell> in puzzle) {
+            for(cell: Cell in row) {
+                val formattedCell = cell.toString()
+                puzzleString += "$formattedCell "
+            }
+            if(row != puzzle.last()) {
+                puzzleString += "\n"
+            }
+        }
+        return puzzleString
+    }
 }

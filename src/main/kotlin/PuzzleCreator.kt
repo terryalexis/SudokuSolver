@@ -14,9 +14,10 @@ class PuzzleCreator {
         }
 
         // Add rows to sudoku puzzle
-        for(i in 2..puzzleData.size - 1) {
+        for(i in 2 until symbolsPerSet + 2) {
             val colValues = puzzleData[i].split(" ").toList()
             if(colValues.size < symbolsPerSet) {
+                println("col values:" + colValues.size + ", symbols: " + symbolsPerSet + " i:" + i + " val:" + colValues[0])
                 throw Exception("Sudoku puzzle has an incorrect number of columns.")
             }
             puzzle.insertRow(colValues)
