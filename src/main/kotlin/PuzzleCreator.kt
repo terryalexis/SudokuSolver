@@ -1,19 +1,33 @@
+import kotlin.math.floor
+import kotlin.math.sqrt
 class PuzzleCreator {
-    fun createPuzzleFromData(puzzleData: List<String>) : Puzzle {
-        var puzzle: Puzzle = Puzzle()
-
-        // validate
-        //  - check if file is valid
-        //  - check if puzzle is valid
+    fun createPuzzle(puzzleData: List<String>) : Puzzle {
         val symbolsPerSet : Int = Integer.parseInt(puzzleData[0])
-        val validSymbols : Array<String> = puzzleData[1].split(" ").toTypedArray()
+        val validSymbols : List<String> = puzzleData[1].split(" ").toList()
+        var puzzle: Puzzle = Puzzle(symbolsPerSet, validSymbols)
 
-        for(i in 2..symbolsPerSet) {
-            val rowValues = puzzleData[i].split(" ").toTypedArray()
-            if(rowValues.size < symbolsPerSet) {
-                throw Exception("Sudoku puzzle is incorrectly formatted")
-            }
+        if(!isPerfectSquare(symbolsPerSet)) {
+            throw Exception("Sudoku puzzle must be a perfect square.")
         }
+        if(puzzleData.size < symbolsPerSet + 2) {
+            throw Exception("Sudoku puzzle has an incorrect number of rows.")
+        }
+
+        // Add rows to sudoku puzzle
+        for(i in 2..puzzleData.size - 1) {
+            val colValues = puzzleData[i].split(" ").toList()
+            if(colValues.size < symbolsPerSet) {
+                throw Exception("Sudoku puzzle has an incorrect number of columns.")
+            }
+            puzzle.insertRow(colValues)
+        }
+
         return puzzle
     }
+
+    private fun isPerfectSquare(symbolsPerSet: Int): Boolean {
+        val squareRoot = sqrt(symbolsPerSet.toFloat())
+        return squareRoot == floor(squareRoot)
+    }
 }
+

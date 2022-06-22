@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     val outputFile = getOutputFile()
 
     val lines: List<String> = File(inputFile).readLines()
-    val puzzleToSolve = PuzzleCreator().createPuzzleFromData(lines)
+    val puzzleToSolve = PuzzleCreator().createPuzzle(lines)
 
     println("Solving the puzzle...")
     // perform calculation
